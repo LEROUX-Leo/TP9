@@ -1,6 +1,17 @@
 #include "es.h" 	 
 #define MAX 10 //pile STATIQUE (limitée à MAX éléments)
 
+#define passerAuPremierFils(adrP,E) empiler(adrP,E)
+//–→s’appelle avec passerAuPremierFils(&P,1) ;
+#define remonterAuPere(adrP, E) depiler(adrP,E) 
+//–→s’appelle avec remonterAuPere(&P) ;
+#define passerAuFrereSuivant(adrP,adrE) depiler(adrP,adrE),empiler(adrP,1+(*adrE)) 
+//–→s’appelle avec passerAuFrereSuivant(&P,&E) ;
+#define naPlusDeFrere(adrP,TailleChaine)  sommet(adrP)==TailleChaine //–→s’appelle avec naPlusDeFrere(&P,strlen(ch)) ;
+#define noeudTerminal(adrP,TailleChaine)  hauteur(adrP)==TailleChaine
+//–→s’appelle avec noeudTerminal(&P,strlen(ch)) ;
+#define rechercheTerminee(adrP)  pilevide(adrP)
+//–→s’appelle avec rechercheTerminee(&P) ;
 
 typedef struct  
 {
@@ -17,5 +28,6 @@ int depiler( T_Pile *, T_Elt *); //pop retourne le T_Elt via pelt et renvoie 0 s
 T_Elt sommet(const  T_Pile *);// valeur au sommet de la pile
 int hauteur(const  T_Pile *);
 void afficherPile(T_Pile *); //vous devez depiler la pile pour afficher chacune de ses valeurs (puis surtout la rempiler)
-
-
+void testPile(T_Pile *P);
+int pileValide(T_Pile *adrP);
+int permutation(T_Pile *P, char *ch);
